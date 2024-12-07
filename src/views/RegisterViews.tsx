@@ -1,8 +1,15 @@
-
+import { Link } from "react-router-dom"
 
 const RegisterViews = () => {
       return (
-            <div>RegisterViews</div>
+            <>
+
+                  <nav>
+                        <Link to="/auth/login">
+                              ¿Ingresa al Login?  Aqui!!
+                        </Link>
+                  </nav>
+            </>
       )
 }
 
