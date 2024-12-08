@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import axios from "axios";
+import { RegisterForm } from "../types";
 import ErrorMessage from "../components/ErrorMessage";
 
 const LoginViews = () => {
-      const initialValues = {
+      const initialValues: RegisterForm = {
             name: '',
             email: '',
             handle: '',
@@ -15,10 +17,13 @@ const LoginViews = () => {
 
       const password = watch('password');
 
-      console.log(password);
-
-      const handleRegister = () => {
-            console.log('Desde handleRegister...');
+      const handleRegister = async (formData: RegisterForm) => {
+            try {
+                  const response = await axios.post('http://localhost:3000/auth/register', formData);
+                  console.log(response);
+            } catch (error) {
+                  console.log(error);
+            }
       }
 
       return (
