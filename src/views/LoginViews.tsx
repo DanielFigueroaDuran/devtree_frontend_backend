@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
+import ErrorMessage from "../components/ErrorMessage";
 
 const LoginViews = () => {
       const { register, watch, handleSubmit, formState: { errors } } = useForm();
@@ -27,6 +28,7 @@ const LoginViews = () => {
                                           required: "El nombre es obligatorio"
                                     })}
                               />
+                              {errors.name && <ErrorMessage >{errors.name.message}</ErrorMessage>}
                         </div>
                         <div className="grid grid-cols-1 space-y-3">
                               <label htmlFor="email" className="text-2xl text-slate-500">E-mail</label>
@@ -39,6 +41,8 @@ const LoginViews = () => {
                                           required: "El email es obligatorio"
                                     })}
                               />
+                              {errors.email && <ErrorMessage >{errors.email.message}</ErrorMessage>}
+
                         </div>
                         <div className="grid grid-cols-1 space-y-3">
                               <label htmlFor="handle" className="text-2xl text-slate-500">Handle</label>
@@ -51,6 +55,8 @@ const LoginViews = () => {
                                           required: "El handle es obligatorio"
                                     })}
                               />
+                              {errors.handle && <ErrorMessage >{errors.handle.message}</ErrorMessage>}
+
                         </div>
                         <div className="grid grid-cols-1 space-y-3">
                               <label htmlFor="password" className="text-2xl text-slate-500">Password</label>
@@ -63,6 +69,8 @@ const LoginViews = () => {
                                           required: "El password es obligatorio"
                                     })}
                               />
+                              {errors.password && <ErrorMessage >{errors.password.message}</ErrorMessage>}
+
                         </div>
 
                         <div className="grid grid-cols-1 space-y-3">
@@ -73,9 +81,10 @@ const LoginViews = () => {
                                     placeholder="Repetir Password"
                                     className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                                     {...register('password', {
-                                          required: "El password confirmación es obligatorio"
+                                          required: "La confirmación de password es obligatorio"
                                     })}
                               />
+
                         </div>
 
                         <input
