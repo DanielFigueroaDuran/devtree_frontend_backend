@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
+import { toast } from "sonner";
 import { RegisterForm } from "../types";
 import ErrorMessage from "../components/ErrorMessage";
 
@@ -13,16 +14,19 @@ const LoginViews = () => {
             password_confirmation: ''
       };
 
-      const { register, watch, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
+      const { register, watch, reset, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
 
       const password = watch('password');
 
       const handleRegister = async (formData: RegisterForm) => {
             try {
-                  const response = await axios.post('http://localhost:3000/auth/register', formData);
-                  console.log(response);
+                  const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, formData);
+                  toast.success(data);
+                  reset();
             } catch (error) {
-                  console.log(error);
+                  if (isAxiosError(error) && error.response) {
+                        toast.error(error.response.data.error)
+                  }
             }
       }
 
