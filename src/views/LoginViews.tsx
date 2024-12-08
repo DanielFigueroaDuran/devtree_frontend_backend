@@ -3,7 +3,19 @@ import { Link } from "react-router-dom"
 import ErrorMessage from "../components/ErrorMessage";
 
 const LoginViews = () => {
-      const { register, watch, handleSubmit, formState: { errors } } = useForm();
+      const initialValues = {
+            name: '',
+            email: '',
+            handle: '',
+            password: '',
+            password_confirmation: ''
+      };
+
+      const { register, watch, handleSubmit, formState: { errors } } = useForm({ defaultValues: initialValues });
+
+      const password = watch('password');
+
+      console.log(password);
 
       const handleRegister = () => {
             console.log('Desde handleRegister...');
@@ -38,7 +50,11 @@ const LoginViews = () => {
                                     placeholder="Email de Registro"
                                     className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
                                     {...register('email', {
-                                          required: "El email es obligatorio"
+                                          required: "El email es obligatorio",
+                                          pattern: {
+                                                value: /\S+@\S+\.\S+/,
+                                                message: "E-mail no válido",
+                                          },
                                     })}
                               />
                               {errors.email && <ErrorMessage >{errors.email.message}</ErrorMessage>}
@@ -66,7 +82,11 @@ const LoginViews = () => {
                                     id="password"
                                     placeholder="Password de Registro"
                                     {...register('password', {
-                                          required: "El password es obligatorio"
+                                          required: "El password es obligatorio",
+                                          minLength: {
+                                                value: 8,
+                                                message: "El password debe ser minimo de 8 caracteres"
+                                          }
                                     })}
                               />
                               {errors.password && <ErrorMessage >{errors.password.message}</ErrorMessage>}
@@ -80,10 +100,12 @@ const LoginViews = () => {
                                     type="password"
                                     placeholder="Repetir Password"
                                     className="bg-slate-100 border-none p-3 rounded-lg placeholder-slate-400"
-                                    {...register('password', {
-                                          required: "La confirmación de password es obligatorio"
+                                    {...register('password_confirmation', {
+                                          required: "Repetir password es obligatorio",
+                                          validate: (value) => value === password || 'Los passwords no son iguales'
                                     })}
                               />
+                              {errors.password_confirmation && <ErrorMessage >{errors.password_confirmation.message}</ErrorMessage>}
 
                         </div>
 
