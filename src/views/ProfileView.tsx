@@ -1,12 +1,24 @@
-
+import { useForm } from "react-hook-form";
+import ErrorMessage from "../components/ErrorMessage";
 
 
 export default function ProfileView() {
 
+      const { register, handleSubmit, formState: { errors } } = useForm({
+            defaultValues: {
+                  handle: '',
+                  description: ''
+            }
+      });
+
+      const handleUserProfileForm = (fomData) => {
+            console.log(fomData);
+      };
+
       return (
             <form
                   className="bg-white p-10 rounded-lg space-y-5"
-                  onSubmit={() => { }}
+                  onSubmit={handleSubmit(handleUserProfileForm)}
             >
                   <legend className="text-2xl text-slate-800 text-center">Editar Información</legend>
                   <div className="grid grid-cols-1 gap-2">
@@ -17,7 +29,11 @@ export default function ProfileView() {
                               type="text"
                               className="border-none bg-slate-100 rounded-lg p-2"
                               placeholder="handle o Nombre de Usuario"
+                              {...register('handle', {
+                                    required: "El Nombre de Usuario es Obligatorio"
+                              })}
                         />
+                        {errors.handle && <ErrorMessage>{errors.handle.message}</ErrorMessage>}
                   </div>
 
                   <div className="grid grid-cols-1 gap-2">
@@ -27,7 +43,11 @@ export default function ProfileView() {
                         <textarea
                               className="border-none bg-slate-100 rounded-lg p-2"
                               placeholder="Tu Descripción"
+                              {...register('description', {
+                                    required: 'La Descripción es Obligatoria'
+                              })}
                         />
+                        {errors.description && <ErrorMessage>{errors.description.message}</ErrorMessage>}
                   </div>
 
                   <div className="grid grid-cols-1 gap-2">

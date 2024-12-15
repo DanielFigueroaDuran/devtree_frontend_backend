@@ -14,9 +14,6 @@ export default function AppLayout() {
       });
 
       if (isLoading) return 'Cargando....';
-      if (isError) {
-            return <Navigate to={'/auth/login'} />
-      };
-
+      if (isError) return <Navigate to={'/auth/login'} />
       if (data) return <Devtree data={data} />
 }
