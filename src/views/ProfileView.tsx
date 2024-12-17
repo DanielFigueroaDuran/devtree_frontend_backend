@@ -23,7 +23,8 @@ export default function ProfileView() {
                   toast.error(error.message);
             },
             onSuccess: (data) => {
-                  toast.success(data);
+                  toast.success(data)
+                  queryClient.invalidateQueries({ queryKey: ['user'] });
             }
       });
 
