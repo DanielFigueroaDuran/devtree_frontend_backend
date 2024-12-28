@@ -29,8 +29,10 @@ export default function ProfileView() {
       });
 
       const handleChange = (element: React.ChangeEvent<HTMLInputElement>) => {
-            console.log(element.target.files);
-      }
+            if (element.target.files) {
+                  console.log(element.target.files[0]);
+            }
+      };
 
       const handleUserProfileForm = (fomData: ProfileForm) => {
             updateProfileMutation.mutate(fomData);
