@@ -50,7 +50,7 @@ const Devtree = ({ data }: DevtreeProps) => {
                                                 <img
                                                       src={data.image}
                                                       alt="Imagen de Perfil"
-                                                      className="mx-auto mx-w-[250px]"
+                                                      className="mx-auto max-w-[200px]"
                                                 />
                                           }
                                           <p className="text-center text-lg font-black text-white">{data.description}</p>

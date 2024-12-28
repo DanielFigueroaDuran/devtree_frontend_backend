@@ -5,11 +5,20 @@ import DetreeInput from "../components/DetreeInput";
 
 const LinkTreeView = () => {
       const [devtreeLinks, setDevtreeLinks] = useState(social);
-      console.log(devtreeLinks);
+
+      const handleChange = (element: React.ChangeEvent<HTMLInputElement>) => {
+            console.log(element.target.value);
+            console.log(element.target.name);
+      }
+
       return (
             <div className="space-y-5">
                   {devtreeLinks.map(item => (
-                        <DetreeInput key={item.name} item={item} />
+                        <DetreeInput
+                              key={item.name}
+                              item={item}
+                              handleChange={handleChange}
+                        />
                   ))}
             </div>
       )
