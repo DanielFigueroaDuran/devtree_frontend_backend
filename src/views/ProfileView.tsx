@@ -31,11 +31,19 @@ export default function ProfileView() {
       const uploadImageMutation = useMutation({
             mutationFn: uploadImage,
             onError: (error) => {
-                  console.log(error);
+                  toast.error(error.message);
             },
+
             onSuccess: (data) => {
                   console.log(data);
-                  queryClient.invalidateQueries({ queryKey: ['user'] });
+                  //To optimize the image and make it faster we use this code
+                  queryClient.setQueryData(['user'], (prevData: User) => {
+                        //console.log(prevData);
+                        return {
+                              ...prevData,
+                              image: data
+                        }
+                  });
             }
       });
 
