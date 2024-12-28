@@ -35,6 +35,7 @@ export default function ProfileView() {
             },
             onSuccess: (data) => {
                   console.log(data);
+                  queryClient.invalidateQueries({ queryKey: ['user'] });
             }
       });
 
