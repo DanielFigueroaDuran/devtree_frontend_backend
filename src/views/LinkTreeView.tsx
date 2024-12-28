@@ -7,9 +7,13 @@ const LinkTreeView = () => {
       const [devtreeLinks, setDevtreeLinks] = useState(social);
 
       const handleChange = (element: React.ChangeEvent<HTMLInputElement>) => {
-            console.log(element.target.value);
-            console.log(element.target.name);
-      }
+            // console.log(element.target.value);
+            // console.log(element.target.name);
+            const updatedLinks = devtreeLinks.map(link => link.name === element.target.name
+                  ? { ...link, url: element.target.value }
+                  : link);
+            setDevtreeLinks(updatedLinks);
+      };
 
       return (
             <div className="space-y-5">
