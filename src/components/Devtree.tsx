@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import NavigationTabs from "./NavigationTabs";
 import { Toaster } from "sonner";
 import { SocialNetwork, User } from "../types";
-import { useState } from "react";
+import DevtreeLink from "./DevtreeLink";
 
 type DevtreeProps = {
       data: User
@@ -62,7 +63,10 @@ const Devtree = ({ data }: DevtreeProps) => {
                                           <p className="text-center text-lg font-black text-white">{data.description}</p>
                                           <div className="mt-20 flex-col gap-5">
                                                 {enabledLinks.map(link => (
-                                                      <p key={link.name}>{link.url}</p>
+                                                      <DevtreeLink
+                                                            link={link}
+                                                            key={link.name}
+                                                      />
                                                 ))
                                                 }
                                           </div>
