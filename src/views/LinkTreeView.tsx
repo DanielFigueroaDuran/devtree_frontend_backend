@@ -5,8 +5,7 @@ import { isValidUrl } from "../utlis";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateProfile } from "../api/DevtreeApi";
-import { User } from "../types";
-import { Link } from "react-router-dom";
+import { SocialNetwork, User } from "../types";
 
 const LinkTreeView = () => {
       const [devtreeLinks, setDevtreeLinks] = useState(social);
@@ -25,16 +24,15 @@ const LinkTreeView = () => {
       });
 
       useEffect(() => {
-            //console.log(devtreeLinks);
-            const updateData = devtreeLinks.map(item => {
-                  const userlink = JSON.parse(user.links).find(link => link.name === item.name);
+            const updatedData = devtreeLinks.map(item => {
+                  const userlink = JSON.parse(user.links).find((link: SocialNetwork) => link.name === item.name);
                   if (userlink) {
                         return { ...item, url: userlink.url, enabled: userlink.enabled }
                   }
                   return item;
             })
-            console.log(devtreeLinks);
-            setDevtreeLinks(updateData);
+            //console.log(devtreeLinks);
+            setDevtreeLinks(updatedData);
 
       }, []);
 
