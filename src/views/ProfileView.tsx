@@ -55,6 +55,8 @@ export default function ProfileView() {
       };
 
       const handleUserProfileForm = (fomData: ProfileForm) => {
+            console.log(fomData);
+            return
             updateProfileMutation.mutate(fomData);
       };
 

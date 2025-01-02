@@ -3,9 +3,20 @@ import { social } from "../data/social"
 import DetreeInput from "../components/DetreeInput";
 import { isValidUrl } from "../utlis";
 import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import { updateProfile } from "../api/DevtreeApi";
 
 const LinkTreeView = () => {
       const [devtreeLinks, setDevtreeLinks] = useState(social);
+      const { mutate } = useMutation({
+            mutationFn: updateProfile,
+            onError: (error) => {
+                  toast.error(error.message);
+            },
+            onSuccess: () => {
+                  toast.success('Actualizado Correctamente');
+            }
+      });
 
       const handleChange = (element: React.ChangeEvent<HTMLInputElement>) => {
             // console.log(element.target.value);
@@ -41,6 +52,11 @@ const LinkTreeView = () => {
                               handleEnableLink={handleEnableLink}
                         />
                   ))}
+                  <button
+                        className="bg-cyan-400 p-2 text-lg w-full uppercase text-slate-600 rounded font-bold"
+                  >
+                        Guardar Cambios
+                  </button>
             </div>
       )
 }
