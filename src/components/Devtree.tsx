@@ -22,9 +22,19 @@ const Devtree = ({ data }: DevtreeProps) => {
             setEnabledLinks(JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled));
       }, [data]);
 
-      const handleDragEnd = () => {
+      const handleDragEnd = (element: DragEndEvent) => {
+            // console.log(element.active);
+            // console.log(element.over);
+            const { active, over } = element;
+            const prevIndex = enabledLinks.findIndex(Link => Link.id === active.id);
+            const newIndex = enabledLinks.findIndex(Link => Link.id === over?.id);
+            // console.log('preindex', prevIndex);
+            // console.log('newindex', newIndex);
+            const order = arrayMove(enabledLinks, prevIndex, newIndex)
 
-      }
+            setEnabledLinks(order);
+
+      };
 
       return (
             <>
