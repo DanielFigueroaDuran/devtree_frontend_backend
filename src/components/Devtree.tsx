@@ -78,7 +78,7 @@ const Devtree = ({ data }: DevtreeProps) => {
                               <div className="flex justify-end">
                                     <Link
                                           className="font-bold text-right text-slate-800 text-2xl"
-                                          to={''}
+                                          to={`/${data.handle}`}
                                           target="_blank"
                                           rel="noreferrer noopener"
                                     >Visitar Mi Perfil /{data.handle}</Link>
