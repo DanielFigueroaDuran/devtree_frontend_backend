@@ -70,12 +70,28 @@ const LinkTreeView = () => {
             if (selectedSocialNetwork?.enabled) {
                   //console.log('Habilitando', selectedSocialNetwork);
                   //console.log(links.length);
-                  const newItem = {
-                        ...selectedSocialNetwork,
-                        id: links.length + 1
-                  };
+                  const id = links.filter(link => link.id).length + 1;
+                  if (links.some(link => link.name === socialNetwork)) {
+                        updatedItems = links.map(link => {
+                              if (link.name === socialNetwork) {
+                                    return {
+                                          ...link,
+                                          enabled: true,
+                                          id: id
+                                    }
+                              } else {
+                                    return link;
+                              }
+                        });
+                  } else {
+                        const newItem = {
+                              ...selectedSocialNetwork,
+                              id: id
+                        };
+                        updatedItems = [...links, newItem];
+                  }
+
                   // console.log(newItem);
-                  updatedItems = [...links, newItem];
                   console.log(updatedItems);
 
             } else {
