@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { Link, Outlet } from "react-router-dom";
 import { Toaster } from "sonner";
 import { DndContext, DragEndEvent, closestCenter } from "@dnd-kit/core";
@@ -9,7 +10,7 @@ import DevtreeLink from "./DevtreeLink";
 
 type DevtreeProps = {
       data: User
-}
+};
 
 const Devtree = ({ data }: DevtreeProps) => {
       // console.log(JSON.parse(data.links).filter(item => item.enabled));
@@ -22,6 +23,8 @@ const Devtree = ({ data }: DevtreeProps) => {
             setEnabledLinks(JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled));
       }, [data]);
 
+      const queryClient = useQueryClient();
+
       const handleDragEnd = (element: DragEndEvent) => {
             // console.log(element.active);
             // console.log(element.over);
@@ -31,8 +34,22 @@ const Devtree = ({ data }: DevtreeProps) => {
             // console.log('preindex', prevIndex);
             // console.log('newindex', newIndex);
             const order = arrayMove(enabledLinks, prevIndex, newIndex)
-
             setEnabledLinks(order);
+
+            const disabledLinks: SocialNetwork[] = JSON.parse(data.links).filter((item: SocialNetwork) => !item.enabled);
+
+            // console.log(disabledLinks);
+            // console.log(order);
+
+            const links = order.concat(disabledLinks);
+            //console.log(links);
+
+            queryClient.setQueryData(['user'], (prevData: User) => {
+                  return {
+                        ...prevData,
+                        links: JSON.stringify(links)
+                  };
+            });
 
       };
 
