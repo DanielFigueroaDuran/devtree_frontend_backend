@@ -43,6 +43,7 @@ export const uploadImage = async (file: File) => {
 
 export const getUserByHandle = async (handle: string) => {
       try {
+            console.log(handle);
             const { data } = await api(`/${handle}`);
             return data;
       } catch (error) {

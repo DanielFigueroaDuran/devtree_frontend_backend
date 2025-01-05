@@ -6,6 +6,7 @@ import AppLayout from "./layouts/AppLayou";
 import LinkTreeView from "./views/LinkTreeView";
 import ProfileView from "./views/ProfileView";
 import HandleView from "./views/HandleView";
+import NotFoundView from "./views/NotFoundView";
 
 
 export default function Router() {
@@ -23,6 +24,9 @@ export default function Router() {
                         </Route>
                         <Route path="/:handle" element={<AuthLayouts />}>
                               <Route index={true} element={<HandleView />} />
+                        </Route>
+                        <Route path="/404" element={<AuthLayouts />}>
+                              <Route index={true} element={<NotFoundView />} />
                         </Route>
                   </Routes>
             </BrowserRouter>
