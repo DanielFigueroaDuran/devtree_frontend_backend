@@ -40,3 +40,14 @@ export const uploadImage = async (file: File) => {
             }
       }
 };
+
+export const getUserByHandle = async (handle: string) => {
+      try {
+            const { data } = await api(`/${handle}`);
+            return data;
+      } catch (error) {
+            if (isAxiosError(error) && error.response) {
+                  throw new Error(error.response.data.error)
+            }
+      }
+};
