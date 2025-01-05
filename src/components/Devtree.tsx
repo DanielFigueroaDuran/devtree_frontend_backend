@@ -22,6 +22,10 @@ const Devtree = ({ data }: DevtreeProps) => {
             setEnabledLinks(JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled));
       }, [data]);
 
+      const handleDragEnd = () => {
+
+      }
+
       return (
             <>
                   <header className="bg-slate-800 py-5">
@@ -68,15 +72,27 @@ const Devtree = ({ data }: DevtreeProps) => {
                                                 />
                                           }
                                           <p className="text-center text-lg font-black text-white">{data.description}</p>
-                                          <div className="mt-20 flex-col gap-5">
-                                                {enabledLinks.map(link => (
-                                                      <DevtreeLink
-                                                            link={link}
-                                                            key={link.name}
-                                                      />
-                                                ))
-                                                }
-                                          </div>
+
+                                          <DndContext
+                                                collisionDetection={closestCenter}
+                                                onDragEnd={handleDragEnd}
+                                          >
+                                                <div className="mt-20 flex-col gap-5">
+                                                      <SortableContext
+                                                            items={enabledLinks}
+                                                            strategy={verticalListSortingStrategy}
+                                                      >
+                                                            {enabledLinks.map(link => (
+                                                                  <DevtreeLink
+                                                                        link={link}
+                                                                        key={link.name}
+                                                                  />
+                                                            ))
+                                                            }
+                                                      </SortableContext>
+                                                </div>
+                                          </DndContext>
+
                                     </div>
                               </div>
                         </main>
