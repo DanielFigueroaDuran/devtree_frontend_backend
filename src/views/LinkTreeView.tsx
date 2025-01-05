@@ -79,8 +79,27 @@ const LinkTreeView = () => {
                   console.log(updatedItems);
 
             } else {
-                  console.log('Desabilitando');
+                  const indexToUpdate = links.findIndex(link => link.name === socialNetwork);
+                  updatedItems = links.map(link => {
+                        if (link.name === socialNetwork) {
+                              return {
+                                    ...link,
+                                    id: 0,
+                                    enabled: false
+                              };
+                        } else if (link.id > indexToUpdate) {
+                              return {
+                                    ...link,
+                                    id: link.id - 1
+                              };
+
+                        } else {
+                              return link
+                        };
+                  });
+                  console.log(indexToUpdate);
             };
+            console.log(updatedItems);
 
             // store in database
 
@@ -88,7 +107,7 @@ const LinkTreeView = () => {
                   return {
                         ...prevData,
                         links: JSON.stringify(updatedItems)
-                  }
+                  };
             });
       };
 
