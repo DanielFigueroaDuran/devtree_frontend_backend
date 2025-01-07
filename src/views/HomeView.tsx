@@ -1,4 +1,5 @@
 import Header from "../components/Header"
+import SearchForm from "../components/SearchForm"
 
 
 const HomeView = () => {
@@ -15,6 +16,8 @@ const HomeView = () => {
                                           Únete a más de 200 mil developers compartiendo sus redes siciales, comparte tu
                                           perfil de TiKToK, Faceboock, Instagran, YouTube, Github y más
                                     </p>
+
+                                    <SearchForm />
                               </div>
                         </div>
                   </main>
