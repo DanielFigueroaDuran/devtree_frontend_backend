@@ -13,7 +13,7 @@ const HomeView = () => {
                                           Todas tus <span className="text-cyan-400">Redes Sociales </span> en un enlace
                                     </h1>
                                     <p className="text-slate-800 text-xl">
-                                          Únete a más de 200 mil developers compartiendo sus redes siciales, comparte tu
+                                          Únete a más de 200 mil developers compartiendo sus redes sociales, comparte tu
                                           perfil de TiKToK, Faceboock, Instagran, YouTube, Github y más
                                     </p>
 
