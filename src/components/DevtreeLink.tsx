@@ -32,6 +32,7 @@ const DevtreeLink = ({ link }: DevtreeLinkProps) => {
                   </div>
                   <p className="capitalize">Visita mi: <span className="font-bold">{link.name}</span></p>
             </li>
+
       )
 }
 

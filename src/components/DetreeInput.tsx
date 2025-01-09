@@ -11,7 +11,7 @@ type DevTreeInputProps = {
 const DetreeInput = ({ item, handleChange, handleEnableLink }: DevTreeInputProps) => {
 
       return (
-            <div className="bg-white shadow-sm p-5 grid  lg:grid-rows-none lg:flex lg:gap-5 md:grid-rows-none  sm:grid-cols-1 sm:space-y-4">
+            <div className="bg-white shadow-sm p-5 grid justify-center items-center lg:grid-rows-none lg:flex lg:gap-5 md:grid-rows-none  sm:grid-cols-1 sm:space-y-4">
                   <div
                         className="w-12 h-12 bg-cover"
                         style={{ backgroundImage: `url('/social/icon_${item.name}.svg')` }}

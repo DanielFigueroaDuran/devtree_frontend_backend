@@ -64,7 +64,7 @@ const Devtree = ({ data }: DevtreeProps) => {
 
                               <div className="flex justify-end">
                                     <Link
-                                          className="font-bold text-right text-slate-800 text-2xl"
+                                          className="font-bold text-center  text-slate-800 text-2xl "
                                           to={`/${data.handle}`}
                                           target="_blank"
                                           rel="noreferrer noopener"
